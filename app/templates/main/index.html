@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-dark border border-secondary rounded-3 mt-4">
+    <div class="container-fluid py-5">
+        
+        {% if is_dashboard %}
+            <h1 class="display-5 fw-bold text-light">Vezérlőpult</h1>
+            <p class="col-md-8 fs-4 text-light mt-3">
+                Üdvözöllek a védett felületen, <strong class="text-warning">{{ current_user.username }}</strong>! 
+                Ezt a részt már csak hitelesített felhasználók láthatják. Ide építheted be a komolyabb backend logikákat, statisztikákat, vagy az adatbázis kezelő felületét.
+            </p>
+            <hr class="border-secondary my-4">
+            <button class="btn btn-outline-light btn-lg mt-2" type="button">Egy szuper funkció helye</button>
+
+        {% else %}
+            <h1 class="display-5 fw-bold text-light">Helló, Flask Világ! 🚀</h1>
+            <p class="col-md-8 fs-4 text-light mt-3">
+                Ez egy stabil, moduláris alapokra építkező webalkalmazás. Az "App Factory" minta gondoskodik a tiszta backendről, a Bootstrap 5 a reszponzív frontendről, a Jinja2 pedig összeköti a kettőt.
+            </p>
+            <hr class="border-secondary my-4">
+            
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('main.dashboard') }}" class="btn btn-primary btn-lg mt-2">Irány a Vezérlőpult</a>
+            {% else %}
+                <p class="text-muted">A teljes funkcionalitás eléréséhez kérlek lépj be.</p>
+                <a href="{{ url_for('auth.register') }}" class="btn btn-success btn-lg mt-2 me-2">Kezdjük el</a>
+                <a href="{{ url_for('auth.login') }}" class="btn btn-outline-light btn-lg mt-2">Bejelentkezés</a>
+            {% endif %}
+            
+        {% endif %}
+
+    </div>
+</div>
+
+<div class="row align-items-md-stretch mt-4">
+    <div class="col-md-6">
+        <div class="h-100 p-5 bg-dark border border-secondary rounded-3">
+            <h2 class="text-light">Moduláris felépítés</h2>
+            <p class="text-light">A Blueprintek segítségével az alkalmazásod könnyen skálázható marad. Ha a projekt hízni kezd, nem fogsz elveszni a végtelen kód tengerében.</p>
+        </div>
+    </div>
+    <div class="col-md-6 mt-3 mt-md-0">
+        <div class="h-100 p-5 bg-dark border border-secondary rounded-3">
+            <h2 class="text-light">ORM és Adatbázis</h2>
+            <p class="text-light">Az SQLAlchemy kényelmes, Pythonic módot ad az adatbázis kezelésére. Felejtsd el a nyers SQL írását az alapvető műveletekhez!</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
