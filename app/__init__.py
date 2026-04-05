@@ -4,6 +4,7 @@ from logging.handlers import RotatingFileHandler
 from flask import Flask
 from .extensions import db, login_manager, migrate, admin
 from .config import config_dict
+from .admin_utils import MyModelView
 
 def create_app():
     app = Flask(__name__)
@@ -33,7 +34,7 @@ def create_app():
     from flask_admin.contrib.sqla import ModelView
     
     # Alapértelmezett nézet a User táblához
-    admin.add_view(ModelView(User, db.session))
+    admin.add_view(MyModelView(User, db.session))
 
     # --- FLASK-LOGIN USER LOADER (EZ HIÁNYZOTT!) ---
     @login_manager.user_loader
