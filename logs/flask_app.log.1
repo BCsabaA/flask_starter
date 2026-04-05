@@ -1,108 +1,68 @@
-2026-04-04 23:57:23,357 ERROR: Exception on / [GET] [in /home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py:828]
+2026-04-05 02:03:01,118 ERROR: Exception on /auth/register [POST] [in /data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py:828]
 Traceback (most recent call last):
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 1463, in wsgi_app
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 1463, in wsgi_app
     response = self.full_dispatch_request()
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 872, in full_dispatch_request
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 872, in full_dispatch_request
     rv = self.handle_user_exception(e)
          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 870, in full_dispatch_request
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 870, in full_dispatch_request
     rv = self.dispatch_request()
          ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 855, in dispatch_request
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 855, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/app/main/routes.py", line 7, in index
-    return render_template('main/index.html', title='Főoldal')
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/templating.py", line 150, in render_template
-    return _render(app, template, context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/templating.py", line 127, in _render
-    app.update_template_context(context)
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 483, in update_template_context
-    context.update(self.ensure_sync(func)())
-                   ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask_login/utils.py", line 405, in _user_context_processor
-    return dict(current_user=_get_user())
-                             ^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask_login/utils.py", line 370, in _get_user
-    current_app.login_manager._load_user()
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask_login/login_manager.py", line 347, in _load_user
-    raise Exception(
-Exception: Missing user_loader or request_loader. Refer to http://flask-login.readthedocs.io/#how-it-works for more info.
-2026-04-04 23:57:49,322 ERROR: Exception on /admin/ [GET] [in /home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py:828]
-Traceback (most recent call last):
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 1463, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 872, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 870, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 855, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask_admin/base.py", line 69, in inner
-    return self._run_view(f, *args, **kwargs)
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/app/auth/routes.py", line 16, in register
+    existing_user = User.query.filter_by(email=form.email.data).first()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2766, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2864, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+           ^^^^^
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+    return connection._execute_clauseelement(
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask_admin/base.py", line 369, in _run_view
-    return fn(self, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask_admin/base.py", line 455, in index
-    return self.render(self._template)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask_admin/base.py", line 308, in render
-    return render_template(template, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/templating.py", line 150, in render_template
-    return _render(app, template, context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/templating.py", line 127, in _render
-    app.update_template_context(context)
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 483, in update_template_context
-    context.update(self.ensure_sync(func)())
-                   ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask_login/utils.py", line 405, in _user_context_processor
-    return dict(current_user=_get_user())
-                             ^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask_login/utils.py", line 370, in _get_user
-    current_app.login_manager._load_user()
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask_login/login_manager.py", line 347, in _load_user
-    raise Exception(
-Exception: Missing user_loader or request_loader. Refer to http://flask-login.readthedocs.io/#how-it-works for more info.
-2026-04-04 23:57:59,159 ERROR: Exception on / [GET] [in /home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py:828]
-Traceback (most recent call last):
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 1463, in wsgi_app
-    response = self.full_dispatch_request()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 872, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 870, in full_dispatch_request
-    rv = self.dispatch_request()
-         ^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 855, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/app/main/routes.py", line 7, in index
-    return render_template('main/index.html', title='Főoldal')
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/templating.py", line 150, in render_template
-    return _render(app, template, context)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/templating.py", line 127, in _render
-    app.update_template_context(context)
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask/app.py", line 483, in update_template_context
-    context.update(self.ensure_sync(func)())
-                   ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask_login/utils.py", line 405, in _user_context_processor
-    return dict(current_user=_get_user())
-                             ^^^^^^^^^^^
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask_login/utils.py", line 370, in _get_user
-    current_app.login_manager._load_user()
-  File "/home/prothar/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/flask_login/login_manager.py", line 347, in _load_user
-    raise Exception(
-Exception: Missing user_loader or request_loader. Refer to http://flask-login.readthedocs.io/#how-it-works for more info.
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "/data/data/com.termux/files/home/dev/projects/flask_starter/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash 
+FROM user 
+WHERE user.email = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('barabas.csabi@gmail.çom', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
