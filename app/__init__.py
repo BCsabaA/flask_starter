@@ -44,7 +44,9 @@ def create_app():
     # Blueprintek regisztrálása
     from .main import main_bp
     from .auth import auth_bp
+    from .blog import blog_bp
     app.register_blueprint(main_bp)
     app.register_blueprint(auth_bp, url_prefix='/auth')
+    app.register_blueprint(blog_bp, url_prefix='/blog')
 
     return app
